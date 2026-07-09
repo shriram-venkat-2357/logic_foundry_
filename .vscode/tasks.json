@@ -1,0 +1,14 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "simulate lf_delay",
+      "type": "shell",
+      "command": "mkdir -p logs && iverilog -g2012 -s lf_delay_tb -o logs/lf_delay_tb tb/lf_delay_tb.sv channel/Untitled-1.sv && vvp logs/lf_delay_tb",
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": []
+    }
+  ]
+}

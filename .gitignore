@@ -1,0 +1,7 @@
+obj_dir/
+waves/
+logs/
+*.fst
+tb_delay
+tb_awgn
+tb_channel_top
