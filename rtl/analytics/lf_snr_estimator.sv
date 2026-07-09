@@ -15,7 +15,7 @@
 // It avoids logarithmic operations for ASIC synthesis.
 //==============================================================================
 
-module lf_snr_estimator #
+module lf_snr_estimator # 
 
 (
     parameter DATA_WIDTH    = 16,
