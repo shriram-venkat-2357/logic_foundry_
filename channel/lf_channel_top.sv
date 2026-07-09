@@ -1,4 +1,6 @@
 // channel/lf_channel_top.sv
+// Fixed: Connect all backpressure signals properly in the pipeline chain
+
 module lf_channel_top #(
     parameter DATA_WIDTH = 16
 )(
@@ -35,6 +37,10 @@ module lf_channel_top #(
     logic                  after_freq_valid;
     logic                  after_freq_ready;
 
+    logic [DATA_WIDTH-1:0] after_drift_data;
+    logic                  after_drift_valid;
+    logic                  after_drift_ready;
+
     // Chain: DELAY -> AWGN -> FREQ_OFFSET -> CLOCK_DRIFT
     lf_delay #(.DATA_WIDTH(DATA_WIDTH)) u_delay (
         .lf_clk_i, .lf_rst_n_i,
@@ -54,15 +60,19 @@ module lf_channel_top #(
         .lf_clk_i, .lf_rst_n_i,
         .freq_offset_cfg_i(freq_offset_cfg_i),
         .lf_data_i(after_awgn_data),   .lf_valid_i(after_awgn_valid), .lf_ready_o(after_awgn_ready),
-        .lf_data_o(after_freq_data), .lf_valid_o(after_freq_valid), .lf_ready_i(lf_rx_ready_i)
+        .lf_data_o(after_freq_data), .lf_valid_o(after_freq_valid), .lf_ready_i(after_freq_ready)
     );
 
     // Clock drift applied as final stage
     lf_clock_drift #(.DATA_WIDTH(DATA_WIDTH)) u_drift (
         .lf_clk_i, .lf_rst_n_i,
         .drift_cfg_i(drift_cfg_i),
-        .lf_data_i(after_freq_data),   .lf_valid_i(after_freq_valid), .lf_ready_o(),
-        .lf_data_o(lf_rx_data_o),   .lf_valid_o(lf_rx_valid_o), .lf_ready_i(lf_rx_ready_i)
+        .lf_data_i(after_freq_data),   .lf_valid_i(after_freq_valid), .lf_ready_o(after_freq_ready),
+        .lf_data_o(after_drift_data),   .lf_valid_o(after_drift_valid), .lf_ready_i(lf_rx_ready_i)
     );
+
+    // Connect final stage output to RX interface
+    assign lf_rx_data_o  = after_drift_data;
+    assign lf_rx_valid_o = after_drift_valid;
 
 endmodule

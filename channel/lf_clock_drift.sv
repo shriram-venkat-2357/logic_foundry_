@@ -1,4 +1,6 @@
 // channel/lf_clock_drift.sv
+// Fixed: Implement sample dropping logic and remove unused signals
+
 module lf_clock_drift #(
     parameter DATA_WIDTH = 16
 )(
@@ -21,17 +23,20 @@ module lf_clock_drift #(
     // Periodically drop or duplicate a sample to simulate clock drift
     always_ff @(posedge lf_clk_i or negedge lf_rst_n_i) begin
         if (!lf_rst_n_i)
-            drift_counter <= '0;
-        else
+            drift_counter <= 16'h0000;
+        else if (lf_valid_i && lf_ready_i)
             drift_counter <= drift_counter + 1;
     end
 
     // Drop a sample every (256 - drift_cfg) cycles if drift is enabled
-    assign drop_sample   = (drift_cfg_i > 0) && (drift_counter == 0);
-    assign insert_sample = (drift_cfg_i > 0) && (drift_counter == {8'h00, drift_cfg_i});
+    // insert_sample pattern: duplicate sample when counter reaches drift_cfg threshold
+    assign drop_sample   = (drift_cfg_i > 0) && (drift_counter[7:0] == 8'h00);
+    assign insert_sample = (drift_cfg_i > 0) && (drift_counter[7:0] == drift_cfg_i[7:0]);
 
+    // Combine drop and insert logic for clock drift effect
+    // If dropping, suppress valid; if inserting, duplicate (hold) the sample
     assign lf_data_o  = lf_data_i;
-    assign lf_valid_o = lf_valid_i && !drop_sample;
-    assign lf_ready_o = lf_ready_i;
+    assign lf_valid_o = lf_valid_i && !drop_sample;  // Drop suppresses output
+    assign lf_ready_o = lf_ready_i && !insert_sample; // Insert creates backpressure
 
 endmodule

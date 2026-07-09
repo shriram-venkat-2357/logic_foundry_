@@ -1,4 +1,6 @@
 // channel/lf_awgn.sv
+// Fixed: Replace dynamic bit-slice with static slicing for better synthesis
+
 module lf_awgn #(
     parameter DATA_WIDTH = 16
 )(
@@ -35,11 +37,29 @@ module lf_awgn #(
             lfsr <= lfsr_next;
     end
 
-    // Generate noise mask: compare each LFSR bit against noise_level
+    // Generate noise mask: use static bit slices for synthesis optimization
     always_comb begin
+        // Extract 8-bit slices from LFSR and compare against noise_level
+        logic [7:0] lfsr_slice_0, lfsr_slice_1, lfsr_slice_2, lfsr_slice_3;
+        
+        lfsr_slice_0 = lfsr[7:0];
+        lfsr_slice_1 = lfsr[15:8];
+        lfsr_slice_2 = lfsr[23:16];
+        lfsr_slice_3 = lfsr[31:24];
+        
+        // Apply noise threshold comparisons
         for (int i = 0; i < DATA_WIDTH; i++) begin
+            // Select which LFSR slice based on bit position
+            logic [7:0] selected_slice;
+            case (i >> 2)  // Divide by 4 to select slice
+                2'b00: selected_slice = lfsr_slice_0;
+                2'b01: selected_slice = lfsr_slice_1;
+                2'b10: selected_slice = lfsr_slice_2;
+                default: selected_slice = lfsr_slice_3;
+            endcase
+            
             // Higher noise_level = more bits flipped
-            noise_mask[i] = (lfsr[i*2 +: 8] < noise_level_i) ? 1'b1 : 1'b0;
+            noise_mask[i] = (selected_slice < noise_level_i) ? 1'b1 : 1'b0;
         end
     end
 
