@@ -1,0 +1,213 @@
+xrun(64): 25.03-s001: (c) Copyright 1995-2025 Cadence Design Systems, Inc.
+TOOL:	xrun(64)	25.03-s001: Started on Jul 10, 2026 at 04:13:36 IST
+xrun
+	-64bit
+	-gui
+	-access +rwc
+	-top LF_TOP_TB
+	-f filelist.f
+		rtl/packages/LF_pkg.sv
+		rtl/interfaces/LF_cfg_if.sv
+		rtl/interfaces/LF_fifo_if.sv
+		rtl/interfaces/LF_status_if.sv
+		rtl/interfaces/LF_stream_if.sv
+		rtl/common/*.sv
+		rtl/control/*.sv
+		rtl/transmitter/*.sv
+		rtl/channel/*.sv
+		rtl/receiver/*.sv
+		rtl/analytics/*.sv
+		rtl/top/*.sv
+		tb/*.sv
+file: rtl/top/LF_TOP.sv
+	module worklib.LF_TOP:sv
+		errors: 0, warnings: 0
+	Elaborating the design hierarchy:
+		Caching library 'worklib' ....... Done
+	Top level design units:
+		LF_pkg
+		$unit_0x5b7f2260
+		LF_TOP_TB
+	Building instance overlay tables: .................... Done
+	Generating native compiled code:
+		worklib.lf_snr_estimator:sv <0x047f3292>
+			streams:   7, words:  2711
+		worklib.lf_latency_counter:sv <0x39372c82>
+			streams:  11, words:  3339
+		worklib.lf_packet_counter:sv <0x09912ae2>
+			streams:   7, words:  1654
+		worklib.lf_ber_counter:sv <0x614afab6>
+			streams:   8, words:  1978
+		worklib.lf_packet_decoder:sv <0x605925a9>
+			streams:   7, words:  4946
+		worklib.lf_crc_check:sv <0x1ee6f94d>
+			streams:   4, words:  1729
+		worklib.lf_descrambler:sv <0x087f5d38>
+			streams:   5, words:  1644
+		worklib.lf_deinterleaver:sv <0x388a1518>
+			streams:   8, words:  3830
+		worklib.lf_p2s:sv <0x1c599235>
+			streams:   8, words:  2708
+		worklib.lf_demod_ctrl:sv <0x093759a2>
+			streams:   4, words:  1978
+		worklib.lf_qam16_demod:sv <0x3a9dacaf>
+			streams:  11, words:  4408
+		worklib.lf_qpsk_demod:sv <0x5a3f5599>
+			streams:   7, words:  2546
+		worklib.lf_equalizer:sv <0x545542e4>
+			streams:   4, words:  1345
+		worklib.lf_channel_est:sv <0x3c40c970>
+			streams:   5, words:  1867
+		worklib.lf_fft:sv <0x7d9fda68>
+			streams:   6, words:  4152
+		worklib.lf_cp_remove:sv <0x70916b5d>
+			streams:   4, words:  1570
+		worklib.lf_sync:sv <0x49e720de>
+			streams:   6, words:  2203
+		worklib.lf_frame_detect:sv <0x696eb905>
+			streams:   7, words:  2716
+		worklib.lf_rx_fifo:sv <0x3e5f2d7e>
+			streams:   8, words:  3877
+		worklib.lf_clock_drift:sv <0x106a7ed4>
+			streams:   7, words:  2942
+		worklib.lf_freq_offset:sv <0x622cf21d>
+			streams:   6, words:  1497
+		worklib.lf_awgn:sv <0x57aa334e>
+			streams:   7, words:  2167
+		worklib.lf_delay:sv <0x1df5be3f>
+			streams:   7, words: 16582
+		worklib.lf_channel_top:sv <0x475df734>
+			streams:  19, words:  4934
+		worklib.LF_FIFO:sv <0x18727bad>
+			streams:   7, words:  3093
+		worklib.lf_tx_fifo:sv <0x51462000>
+			streams:   9, words:  2879
+		worklib.lf_cp_insert:sv <0x12a44764>
+			streams:  11, words:  5116
+		worklib.lf_ifft:sv <0x1b4561a5>
+			streams:   6, words:  4152
+		worklib.LF_PILOT_INSERT:sv <0x2b9b8f26>
+			streams:   9, words:  3452
+		worklib.LF_MOD_CTRL:sv <0x3705a92f>
+			streams:   4, words:  3075
+		worklib.LF_QAM16_MOD:sv <0x7e726b48>
+			streams:   8, words:  3567
+		worklib.LF_QPSK_MOD:sv <0x65d89e70>
+			streams:   8, words:  4161
+		worklib.LF_BPSK_MOD:sv <0x4583dadb>
+			streams:   7, words:  3251
+		worklib.LF_INTERLEAVER:sv <0x583a1a60>
+			streams:  16, words:  6665
+		worklib.LF_SCRAMBLER:sv <0x551febc7>
+			streams:   8, words:  3341
+		worklib.LF_CRC_GEN:sv <0x32a48a3b>
+			streams:  15, words:  5964
+		worklib.lf_pkt_gen:sv <0x5d40ffda>
+			streams:  10, words:  4025
+		worklib.LF_STATUS_REG:sv <0x69a376cc>
+			streams:   5, words:  3607
+		worklib.LF_HEALTH_MON:sv <0x252c5a7d>
+			streams:   7, words:  2543
+		worklib.LF_LINK_POWER_CTRL:sv <0x3d2a360f>
+			streams:   1, words:  2414
+		worklib.LF_LINK_ADAPT_CTRL:sv <0x38370225>
+			streams:   1, words:  2379
+		worklib.LF_PERF_MON:sv <0x39f9e5a4>
+			streams:   1, words:  1527
+		worklib.LF_MAIN_CONTROLLER:sv <0x0b961697>
+			streams:   5, words:  3631
+		worklib.LF_CFG_REG:sv <0x047820aa>
+			streams:  13, words:  6203
+		worklib.LF_TOP:sv <0x0e6601f1>
+			streams: 240, words: 73133
+		worklib.LF_TOP_TB:sv <0x18411ab4>
+			streams:  27, words: 44409
+		worklib.\$unit_0x5b7f2260 :compilation_unit <0x0bdb8a88>
+			streams:   7, words:  2655
+		worklib.LF_pkg:sv <0x15812578>
+			streams:   1, words:   221
+	Building instance specific data structures.
+	Loading native compiled code:     .................... Done
+	Design hierarchy summary:
+		                     Instances  Unique
+		Modules:                    46      46
+		Interfaces:                  4       1
+		Verilog packages:            1       1
+		Registers:                 576     518
+		Scalar wires:              298       -
+		Expanded wires:             16       1
+		Vectored wires:            210       -
+		Always blocks:              71      71
+		Initial blocks:              3       3
+		Cont. assignments:          54      60
+		Pseudo assignments:        263       -
+		Compilation units:           1       1
+		SV Class declarations:       1       1
+		SV Class specializations:    1       1
+		Process Clocks:             50       2
+		Simulation timescale:      1ps
+	Writing initial simulation snapshot: worklib.LF_TOP_TB:sv
+xmsim: *W,NOMTDGUI: Multi-Threaded Dumping is disabled for interactive debug mode.
+
+-------------------------------------
+Relinquished control to SimVision...
+xcelium> 
+xcelium> source /home/guru/cadence/installs/XCELIUM2503/tools/xcelium/files/xmsimrc
+xcelium> database -open waves -into waves.shm -default
+Created default SHM database waves
+xcelium> probe -create -shm LF_TOP_TB.dut.adapt_modulation LF_TOP_TB.dut.adapt_req LF_TOP_TB.dut.adapt_wr_en LF_TOP_TB.dut.ber_high LF_TOP_TB.dut.bpsk_demod_bit LF_TOP_TB.dut.bpsk_i LF_TOP_TB.dut.bpsk_q LF_TOP_TB.dut.bpsk_v LF_TOP_TB.dut.bpsk_valid_out LF_TOP_TB.dut.cfg LF_TOP_TB.dut.cfg_enable LF_TOP_TB.dut.cfg_valid LF_TOP_TB.dut.ch_est_imag LF_TOP_TB.dut.ch_est_real LF_TOP_TB.dut.ch_est_valid LF_TOP_TB.dut.ch_gain LF_TOP_TB.dut.ch_rx_imag LF_TOP_TB.dut.ch_rx_ready LF_TOP_TB.dut.ch_rx_real LF_TOP_TB.dut.ch_rx_valid LF_TOP_TB.dut.ch_tx_ready LF_TOP_TB.dut.cp_imag LF_TOP_TB.dut.cp_real LF_TOP_TB.dut.cp_rem_data LF_TOP_TB.dut.cp_rem_valid LF_TOP_TB.dut.cp_valid LF_TOP_TB.dut.crc_data LF_TOP_TB.dut.crc_eop LF_TOP_TB.dut.crc_err_w LF_TOP_TB.dut.crc_fail LF_TOP_TB.dut.crc_ok LF_TOP_TB.dut.crc_sop LF_TOP_TB.dut.crc_valid LF_TOP_TB.dut.dec_data LF_TOP_TB.dut.dec_eop LF_TOP_TB.dut.dec_payload_len LF_TOP_TB.dut.dec_pkt_done LF_TOP_TB.dut.dec_pkt_id LF_TOP_TB.dut.dec_sop LF_TOP_TB.dut.dec_valid LF_TOP_TB.dut.deint_bit LF_TOP_TB.dut.deint_valid LF_TOP_TB.dut.demod_bits LF_TOP_TB.dut.demod_valid LF_TOP_TB.dut.descr_bit LF_TOP_TB.dut.descr_valid LF_TOP_TB.dut.eq_imag LF_TOP_TB.dut.eq_real LF_TOP_TB.dut.eq_valid LF_TOP_TB.dut.error_detected_reg LF_TOP_TB.dut.error_flag LF_TOP_TB.dut.fft_imag LF_TOP_TB.dut.fft_real LF_TOP_TB.dut.fft_valid LF_TOP_TB.dut.fifo_err_w LF_TOP_TB.dut.frame_data LF_TOP_TB.dut.frame_data_valid LF_TOP_TB.dut.frame_detect LF_TOP_TB.dut.health_error LF_TOP_TB.dut.health_ok_w LF_TOP_TB.dut.ifft_imag_out LF_TOP_TB.dut.ifft_real_out LF_TOP_TB.dut.ifft_valid_in LF_TOP_TB.dut.ifft_valid_out LF_TOP_TB.dut.inter_data LF_TOP_TB.dut.inter_eop LF_TOP_TB.dut.inter_sop LF_TOP_TB.dut.inter_valid LF_TOP_TB.dut.latency_high LF_TOP_TB.dut.lf_cfg_i LF_TOP_TB.dut.lf_cfg_wr_en_i LF_TOP_TB.dut.lf_clk_i LF_TOP_TB.dut.lf_current_state_o LF_TOP_TB.dut.lf_data_i LF_TOP_TB.dut.lf_data_o LF_TOP_TB.dut.lf_delay_cfg_i LF_TOP_TB.dut.lf_done_o LF_TOP_TB.dut.lf_drift_cfg_i LF_TOP_TB.dut.lf_freq_offset_i LF_TOP_TB.dut.lf_noise_level_i LF_TOP_TB.dut.lf_perf_o LF_TOP_TB.dut.lf_rst_n_i LF_TOP_TB.dut.lf_soft_reset_i LF_TOP_TB.dut.lf_start_i LF_TOP_TB.dut.lf_status_o LF_TOP_TB.dut.lf_system_health_o LF_TOP_TB.dut.lf_valid_i LF_TOP_TB.dut.lf_valid_o LF_TOP_TB.dut.link_good LF_TOP_TB.dut.mod_ctrl_data LF_TOP_TB.dut.mod_ctrl_eop LF_TOP_TB.dut.mod_ctrl_sop LF_TOP_TB.dut.mod_ctrl_valid LF_TOP_TB.dut.mod_i_out LF_TOP_TB.dut.mod_iq_valid LF_TOP_TB.dut.mod_q_out LF_TOP_TB.dut.monitor_enable LF_TOP_TB.dut.p2s_bit LF_TOP_TB.dut.p2s_busy LF_TOP_TB.dut.p2s_valid LF_TOP_TB.dut.perf_ber_reg LF_TOP_TB.dut.perf_latency_reg LF_TOP_TB.dut.perf_pkt_count_reg LF_TOP_TB.dut.perf_snr_reg LF_TOP_TB.dut.pilot_eop LF_TOP_TB.dut.pilot_i LF_TOP_TB.dut.pilot_q LF_TOP_TB.dut.pilot_sop LF_TOP_TB.dut.pilot_valid LF_TOP_TB.dut.pkt_data LF_TOP_TB.dut.pkt_done LF_TOP_TB.dut.pkt_eop LF_TOP_TB.dut.pkt_sop LF_TOP_TB.dut.pkt_valid LF_TOP_TB.dut.power_mode LF_TOP_TB.dut.power_update LF_TOP_TB.dut.qam16_demod_bits LF_TOP_TB.dut.qam16_i LF_TOP_TB.dut.qam16_q LF_TOP_TB.dut.qam16_v LF_TOP_TB.dut.qam16_valid_out LF_TOP_TB.dut.qpsk_demod_bits LF_TOP_TB.dut.qpsk_i LF_TOP_TB.dut.qpsk_q LF_TOP_TB.dut.qpsk_v LF_TOP_TB.dut.qpsk_valid_out LF_TOP_TB.dut.rx_bit_cnt LF_TOP_TB.dut.rx_enable LF_TOP_TB.dut.rx_fifo_data LF_TOP_TB.dut.rx_fifo_empty LF_TOP_TB.dut.rx_fifo_full LF_TOP_TB.dut.rx_fifo_valid LF_TOP_TB.dut.rx_word LF_TOP_TB.dut.rx_word_valid LF_TOP_TB.dut.scram_data LF_TOP_TB.dut.scram_eop LF_TOP_TB.dut.scram_sop LF_TOP_TB.dut.scram_valid LF_TOP_TB.dut.signal_power_extended LF_TOP_TB.dut.snr_low LF_TOP_TB.dut.symbol_start LF_TOP_TB.dut.sync_done LF_TOP_TB.dut.sync_err_w LF_TOP_TB.dut.tx_enable LF_TOP_TB.dut.tx_fifo_empty LF_TOP_TB.dut.tx_fifo_full LF_TOP_TB.dut.tx_fifo_imag LF_TOP_TB.dut.tx_fifo_real LF_TOP_TB.dut.tx_fifo_valid LF_TOP_TB.dut.tx_power LF_TOP_TB.dut.tx_start_pulse
+Created probe 1
+xcelium> run
+xmsim: *W,VCDFOP: Unable to open VCD file waves/lf_top_tb.fst (check file permissions).
+            Time: 0 FS + 18
+
+============================================
+LF-SDR X1 Full System Testbench
+============================================
+[TEST 1] BPSK, noise=0
+[WARN] Timeout waiting for packet done after 5000 cycles
+[TEST 2] QPSK, noise=20
+[WARN] Timeout waiting for packet done after 5000 cycles
+[TEST 3] QAM16, noise=50
+[WARN] Timeout waiting for packet done after 5000 cycles
+[TEST 4] BPSK burst, 5 packets, noise=10
+[WARN] Timeout waiting for packet done after 10000 cycles
+[TEST 5] Soft reset during operation
+============================================
+[FAIL] 4 errors detected
+============================================
+[STATUS] Final state: ST_ERROR
+[STATUS] System health: 000000c6
+Simulation complete via $finish(1) at time 256415 NS + 0
+./tb/LF_TOP_TB.sv:256         $finish;
+xcelium> run -step
+xmsim: *E,RNFNSH: Cannot continue simulation due to a previous $finish.
+xcelium> reset
+Loaded snapshot worklib.LF_TOP_TB:sv
+xcelium> run
+xmsim: *W,VCDFOP: Unable to open VCD file waves/lf_top_tb.fst (check file permissions).
+            Time: 0 FS + 18
+
+============================================
+LF-SDR X1 Full System Testbench
+============================================
+[TEST 1] BPSK, noise=0
+[WARN] Timeout waiting for packet done after 5000 cycles
+[TEST 2] QPSK, noise=20
+[WARN] Timeout waiting for packet done after 5000 cycles
+[TEST 3] QAM16, noise=50
+[WARN] Timeout waiting for packet done after 5000 cycles
+[TEST 4] BPSK burst, 5 packets, noise=10
+[WARN] Timeout waiting for packet done after 10000 cycles
+[TEST 5] Soft reset during operation
+============================================
+[FAIL] 4 errors detected
+============================================
+[STATUS] Final state: ST_ERROR
+[STATUS] System health: 000000c6
+Simulation complete via $finish(1) at time 256415 NS + 0
+./tb/LF_TOP_TB.sv:256         $finish;
+xcelium> ^C
+xcelium> ^C
+xcelium> exit
+TOOL:	xrun(64)	25.03-s001: Exiting on Jul 10, 2026 at 04:28:51 IST  (total: 00:15:15)

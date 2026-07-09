@@ -71,7 +71,7 @@ module lf_functional_coverage (
             bins crc_err     = {1};
             bins fifo_err    = {2};
             bins sync_err    = {4};
-            bins multi_err   = {[3,5,6,7]};
+            bins multi_err   = {3,5,6,7};
         }
 
         // Cross coverage: modulation x health

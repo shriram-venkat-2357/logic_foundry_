@@ -34,9 +34,7 @@ module lf_driver #(
     enum logic [2:0] {IDLE, START, SEND_PACKET, INTER_PACKET_GAP, DONE} state;
 
     // Pseudo-random payload generator (free-running LCG)
-    always_ff @(posedge lf_clk_i) begin
-        seed <= seed * 32'd1103515245 + 32'd12345;
-    end
+  
     assign payload_data = seed[DATA_WIDTH-1:0];
 
     // FIX: lf_start_o is ONLY driven inside always_ff (no concurrent assign)
@@ -55,7 +53,7 @@ module lf_driver #(
         end else begin
             // Default: deassert pulse signals each cycle
             lf_start_o <= 1'b0;
-
+seed <= seed * 32'd1103515245 + 32'd12345;
             case (state)
                 IDLE: begin
                     state <= START;

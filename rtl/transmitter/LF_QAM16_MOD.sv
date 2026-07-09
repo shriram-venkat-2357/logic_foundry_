@@ -151,7 +151,7 @@ module LF_QAM16_MOD
             begin
 
                 i_out <= '0;
-                q_out <= '0';
+                q_out <= '0;
 
             end
 

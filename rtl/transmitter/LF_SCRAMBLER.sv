@@ -37,7 +37,7 @@ module LF_SCRAMBLER
 
     logic [DATA_WIDTH-1:0] scramble_data;
 
-    integer i;
+   
 
     //------------------------------------------------------------
     // Combinational Scramble + LFSR Advance (DATA_WIDTH steps)
@@ -51,7 +51,7 @@ module LF_SCRAMBLER
         temp_lfsr    = lfsr;
         scramble_data = '0;
 
-        for(i = 0; i < DATA_WIDTH; i = i + 1)
+        for(int i = 0; i < DATA_WIDTH; i = i + 1)
         begin
             scramble_data[i] = data_in[i] ^ temp_lfsr[6] ^ temp_lfsr[3];
 
@@ -71,7 +71,7 @@ module LF_SCRAMBLER
     always_comb
     begin
         next_lfsr = lfsr;
-        for(i = 0; i < DATA_WIDTH; i = i + 1)
+        for(int i = 0; i < DATA_WIDTH; i = i + 1)
         begin
             next_lfsr = { next_lfsr[5:0], next_lfsr[6] ^ next_lfsr[3] };
         end

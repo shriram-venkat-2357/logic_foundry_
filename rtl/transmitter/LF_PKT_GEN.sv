@@ -149,7 +149,7 @@ output logic pkt_done_o
 
                     packet_active <= 1'b0;
 
-                    pkt_cnt <= '0';
+                    pkt_cnt <= '0;
 
                 end
 

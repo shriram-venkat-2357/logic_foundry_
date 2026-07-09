@@ -157,7 +157,7 @@ output logic valid_o
             begin
 
                 rd_ptr      <= '0;
-                frame_ready <= 1'b0;
+               
 
             end
 

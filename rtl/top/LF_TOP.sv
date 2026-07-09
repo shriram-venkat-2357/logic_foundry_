@@ -164,7 +164,8 @@ module LF_TOP
     logic                         fft_valid;
 
     logic signed [IQ_WIDTH-1:0] ch_est_real, ch_est_imag, eq_real, eq_imag;
-    logic                         ch_est_valid, eq_valid, ch_gain;
+    logic                         ch_est_valid, eq_valid;
+    logic signed [DATA_WIDTH-1:0] ch_gain;  // FIX: Was 1-bit, must match channel_gain_o width
 
     // FIX: Separate QAM16 demod bits wire (previously circular dependency)
     logic [3:0]              qam16_demod_bits;
@@ -179,7 +180,7 @@ module LF_TOP
     logic                     deint_bit, deint_valid;
     logic                     descr_bit, descr_valid;
 
-    logic                     crc_check_data_valid, crc_check_data;
+    // crc_ok/crc_fail driven by lf_crc_check
     logic                     crc_ok, crc_fail;
 
     logic [DATA_WIDTH-1:0]    dec_data;
@@ -189,13 +190,18 @@ module LF_TOP
     //----------------------------------------------------------
     // Performance Wires
     //----------------------------------------------------------
-    logic                     tx_start_pulse, rx_done_pulse;
+    logic                     tx_start_pulse;
 
     // FIX: Performance registers driven from perf_if instances
     logic [BER_WIDTH-1:0]     perf_ber_reg;
     logic [SNR_WIDTH-1:0]     perf_snr_reg;
     logic [31:0]              perf_latency_reg;
     logic [31:0]              perf_pkt_count_reg;
+
+
+
+    logic health_ok_w, health_error;
+    logic crc_err_w, fifo_err_w, sync_err_w;
 
     //======================================================================
     // PERFORMANCE INTERFACE INSTANCES (one per analytics module)
@@ -298,8 +304,6 @@ module LF_TOP
     );
 
     // --- LF_HEALTH_MON ---
-    logic health_ok_w, health_error;
-    logic crc_err_w, fifo_err_w, sync_err_w;
 
     LF_HEALTH_MON u_health_mon (
         .clk            (lf_clk_i),
@@ -917,7 +921,33 @@ module LF_TOP
     assign lf_data_o = dec_data;
     assign lf_valid_o = dec_valid;
     assign lf_done_o  = dec_pkt_done;
+always @(posedge lf_clk_i) begin
+    if (pkt_valid)
+        $display("%0t PKT_VALID", $time);
 
+    if (crc_valid)
+        $display("%0t CRC_VALID", $time);
+
+    
+
+    if (tx_fifo_valid)
+        $display("%0t TX_FIFO_VALID", $time);
+
+    if (rx_fifo_valid)
+        $display("%0t RX_FIFO_VALID", $time);
+
+    if (dec_valid)
+        $display("%0t DEC_VALID", $time);
+
+    if (dec_sop)
+        $display("%0t DEC_SOP", $time);
+
+    if (dec_eop)
+        $display("%0t DEC_EOP", $time);
+
+    if (dec_pkt_done)
+        $display("%0t DEC_DONE", $time);
+end
 endmodule
 
 `endif

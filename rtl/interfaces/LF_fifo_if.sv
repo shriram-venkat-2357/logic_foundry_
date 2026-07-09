@@ -1,3 +1,4 @@
+`timescale 1ns/1ps
 `ifndef LF_FIFO_IF_SV
 `define LF_FIFO_IF_SV
 

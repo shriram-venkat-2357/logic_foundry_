@@ -26,13 +26,13 @@ module LF_STATUS_REG
     //------------------------------------------------------------
     // Health Inputs
     //------------------------------------------------------------
-    input  logic crc_ok;
-    input  logic fifo_full;
-    input  logic fifo_empty;
-    input  logic overflow;
-    input  logic underflow;
-    input  logic sync_done;
-    input  logic frame_detected;
+    input  logic crc_ok,
+    input  logic fifo_full,
+    input  logic fifo_empty,
+    input  logic overflow,
+    input  logic underflow,
+    input  logic sync_done,
+    input  logic frame_detected,
 
     //------------------------------------------------------------
     // Outputs

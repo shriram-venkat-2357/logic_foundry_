@@ -3,7 +3,7 @@
 
 module lf_monitor #(
     parameter DATA_WIDTH = 16,
-    parameter NAME       = "UNNAMED"
+    parameter string NAME = "UNNAMED"
 )(
     input  logic                   lf_clk_i,
     input  logic                   lf_rst_n_i,
