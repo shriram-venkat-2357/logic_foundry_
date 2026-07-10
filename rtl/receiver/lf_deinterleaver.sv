@@ -8,7 +8,7 @@
 //
 // Industry Style:
 // - Parameterized
-// - Registered Outputs
+// - Registered Outputs 
 // - FSM Controlled
 //==============================================================================
 
